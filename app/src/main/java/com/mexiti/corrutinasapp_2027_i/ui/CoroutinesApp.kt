@@ -44,6 +44,9 @@ fun CoroutinesApp(mainViewModel: MainViewModel, modifier: Modifier = Modifier){
         if (uiState.isBusy || uiState.progress > 0) {
             LinearProgressIndicator(progress = { uiState.progress / 100f })
             Text(text = "${uiState.progress}%")
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(text = "Tiempo Contador 1: ${uiState.tiempoContador1} [s]")
+            Text(text = "Tiempo Contador 2: ${uiState.tiempoContador2} [s]")
         }
 
         Spacer(modifier = Modifier.height(15.dp))
@@ -74,6 +77,15 @@ fun CoroutinesApp(mainViewModel: MainViewModel, modifier: Modifier = Modifier){
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF388E3C))
         ) {
             Text("Lanzar Tarea Sincronizada (Mutex)")
+        }
+
+        Spacer(modifier = Modifier.height(10.dp))
+
+        Button(
+            onClick = {mainViewModel.cancelarProceso()},
+            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFBA85FA))
+        ){
+            Text("Cancelar los cronometros")
         }
     }
 }
